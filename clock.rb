@@ -1,16 +1,17 @@
-# Author: Colin Hart (@ColinTheRobot); adapted by Jason Seminara (@jasonseminara). 
+# Author: Colin Hart (@ColinTheRobot); adapted by Jason Seminara (@jasonseminara).
 # Description: A pseudo-clock that ticks off seconds forever.
 # Date: 2016-03-24
 
 # Build a clock using only strings and loops.
 # Only use the Time class to initially set the clock to the current time.
-# This should print the current time out to the screen once every second, 
+# This should print the current time out to the screen once every second,
 # and print an alarm at the requested time
 # Time fragments must be zero-padded properly.
 
-# BONUS: figure out how to actually make an audible buzz or ding for the alarm. 
+# BONUS: figure out how to actually make an audible buzz or ding for the alarm.
 
 class Clock
+attr_accessor :current_time
 
   def initialize
     #preset to the current time
@@ -26,12 +27,27 @@ class Clock
 
   def set_alarm(h,m)
     # set an alarm
-    throw "I don't know what to do!"
+    # throw "I don't know what to do!"
   end
 
   def start_clock
-    # The clock should print out the current time every second 
-    throw "build me!"
+
+    time_array = @current_time.split(':').map {|time| time.to_i}
+
+    if time_array[2] < 60
+      time_array[2] += 1
+    else
+      time_array[2] = 0
+      if time_array[1] < 60
+        time_array[1] += 1
+        if time_array[0] < 24
+          time_array[0] += 1
+        end
+      end
+    end
+
+    # The clock should print out the current time every second
+    # throw "build me!"
   end
 
 
